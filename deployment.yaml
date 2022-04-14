@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: horde-deployment
+  labels:
+    app: horde-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: horde-web
+  template:
+    metadata:
+      labels:
+        app: horde-web
+    spec:
+      containers:
+        - name: horde-web
+          image: ghcr.io/maintaina/containers/base:latest-apache
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: horde-ghcr-pull

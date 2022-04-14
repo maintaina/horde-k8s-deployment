@@ -1,0 +1,14 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: horde-http-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+      paths:
+  backend:
+    serviceName: horde-service
+    servicePort: 80
